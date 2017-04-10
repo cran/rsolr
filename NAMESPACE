@@ -1,0 +1,81 @@
+useDynLib(rsolr)
+import(methods)
+import(BiocGenerics)
+import(restfulr)
+importFrom(graph, graphNEL, edges)
+importClassesFrom(graph, graph)
+importFrom(rjson, fromJSON, toJSON)
+importFrom(XML, parseURI, xmlTree, newXMLDoc, saveXML, xmlAttrs, xmlRoot,
+           xmlValue, getNodeSet, getEncoding)
+importFrom(RCurl, base64)
+#importClassesFrom(XML, XMLDocument, XMLNode)
+importFrom(tools, pskill, file_path_sans_ext, file_ext)
+importFrom(utils, stack, close.socket, glob2rx, make.socket, unzip)
+importFrom(stats, as.formula, model.frame, na.omit, na.pass,
+           setNames, terms, quantile)
+importFrom(S4Vectors, isSingleString, isSingleNumber, isTRUEorFALSE,
+           isSingleNumberOrNA, recycleIntegerArg, recycleCharacterArg,
+           recycleLogicalArg)
+importClassesFrom(S4Vectors, character_OR_NULL)
+
+export(SolrList, SolrFrame, SolrQuery, SolrCore, TestSolr, uniqueKey, fields,
+       copyFields, fieldTypes, name, version, schema, unmeta,
+       query, core, params, "params<-", stats, defer, docs, pmin, pmax,
+       lengths, ungroup, dynamic, multiValued, typeName, indexed, stored,
+       required, docValues, Promise)
+exportMethods(read, update, delete, commit, meta, purgeCache, ids, "ids<-",
+              fieldNames, subset, xtabs, facets, transform, summary,
+              head, tail, window, rev, aggregate, mean, sd, var, window, group,
+              groupings, deriveSolrSchema, ndoc, nfield, as.data.frame, rename,
+              eval, nrow, rownames, ncol, colnames, heads, tails, windows,
+              with, within, sort, unique, as.list, "%in%", Logic, "!", Compare,
+              grepl, grep, Arith, "-", Math, round, rescale, ifelse, pmin2,
+              pmax2, Summary, mean, var, sd, quantile, median, weighted.mean,
+              IQR, mad, intersect, setdiff, union, table, ftable, rename, rev,
+              facet, ngroup, complete.cases, as.table, nunique, translate,
+              grouping, searchDocs, symbolFactory, "symbolFactory<-", fulfill)
+exportClasses(SolrList, SolrFrame, SolrQuery, SolrCore,
+              ListSolrResult, SolrResult, Grouping, Facets, SolrSchema,
+              FieldInfo, Promise, SimplePromise, SolrPromise, SolrLucenePromise,
+              SolrFunctionPromise, SolrAggregatePromise, SolrSymbolPromise,
+              SolrLuceneSymbolPromise, PredicatedSolrSymbolPromise,
+              DocCollection, DocList, DocDataFrame, Expression,
+              SimpleExpression, Symbol, SimpleSymbol, SymbolFactory,
+              TranslationRequest, FieldType, FieldTypeList, GroupedSolrFrame,
+              SymbolFactory, SolrReducePromise, Context)
+
+S3method(as.data.frame, Solr)
+S3method(as.data.frame, DocCollection)
+S3method(as.data.frame, FieldInfo)
+S3method(as.data.frame, Solr)
+S3method(as.data.frame, SolrFrame)
+S3method(as.data.frame, Promise)
+S3method(as.list, FieldInfo)
+S3method(as.list, Promise)
+S3method(as.Date, Promise)
+S3method(as.POSIXct, Promise)
+S3method(as.POSIXlt, Promise)
+S3method(c, DocCollection)
+S3method(summary, SolrFrame)
+S3method(summary, SolrPromise)
+S3method(window, SolrQuery)
+S3method(window, Solr)
+S3method(window, SolrPromise)
+S3method(head, Solr)
+S3method(tail, Solr)
+S3method(head, SolrQuery)
+S3method(tail, SolrQuery)
+S3method(head, SolrPromise)
+S3method(tail, SolrPromise)
+S3method(rev, SolrQuery)
+S3method(window, Solr)
+S3method(head, Solr)
+S3method(tail, Solr)
+S3method(transform, SolrQuery)
+S3method(transform, Solr)
+S3method(cut, SolrPromise)
+
+S3method(solrFormat, POSIXt)
+S3method(solrFormat, Date)
+S3method(solrFormat, difftime)
+S3method(solrFormat, default)
