@@ -22,6 +22,7 @@
 ###   cov() could do sum(x*y - mean(x)*mean(y)) / (n-1L)
 ###   cor() could do cov(x, y) / (sd(x)*sd(y))
 ###    - It would be nice if sd() worked first.
+###      - This may now work as of Solr 6.6
 ###   split() would just split the underlying Solr, similar for unlist()
 ###    - Should support formulas
 ###   tapply() and by(), via split() and as.table()
@@ -267,7 +268,15 @@ setMethod("%in%", c("SolrSymbolPromise", "PredicatedSolrSymbolPromise"),
 
 setMethod("%in%", c("SolrSymbolPromise", "SolrSymbolPromise"),
           function(x, table) {
-              x %in% table[]
+              predicate <- predicateExpression(query(context(table)),
+                                               core(context(table)))
+              if (!is.null(predicate)) {
+                  symbol <- PredicatedSolrSymbol(expr(table), predicate)
+                  table <- PredicatedSolrSymbolPromise(symbol, context(x))
+              } else {
+                  table <- table[]
+              }
+              x %in% table
           })
 
 setMethod("%in%", c("SolrSymbolPromise", "vector"),
@@ -974,17 +983,17 @@ setMethod("var", "SolrPromise", function(x, na.rm=FALSE) {
               if (!identical(na.rm, FALSE)) {
                   stop("'na.rm' must be FALSE")
               }
-### FIXME: The new facet stats API does not yet support stdev()
-              stop("'var' is not yet supported (waiting on Solr)")
-              solrAggregate("stdev", x, na.rm=FALSE,
-                            postprocess=function(sd, count) sd^2)
+              if (version(core(context(x))) < "6.6.0")
+                  stop("'var' requires Solr version >= 6.6.0")
+              solrAggregate("variance", x, na.rm=FALSE)
           })
 
 setMethod("sd", "SolrPromise", function(x, na.rm=FALSE) {
               if (!identical(na.rm, FALSE)) {
                   stop("'na.rm' must be FALSE")
               }
-              stop("'sd' is not yet supported (waiting on Solr)")
+              if (version(core(context(x))) < "6.6.0")
+                  stop("'sd' requires Solr version >= 6.6.0")
               solrAggregate("stdev", x, na.rm=FALSE)
           })
 
@@ -1024,11 +1033,8 @@ setMethod("nunique", "SolrPromise",
                             child=child, postprocess=postprocess)
           })
 
-setGeneric("quantile",
-           function (x, ...) standardGeneric("quantile"))
-
-setMethod("quantile", "SolrPromise",
-          function (x, probs = seq(0, 1, 0.25), na.rm = FALSE) {
+quantile.SolrPromise <- function(x, probs = seq(0, 1, 0.25), na.rm = FALSE, ...)
+{
               probs <- probs * 100
               solrAggregate("percentile", x, na.rm, as.list(probs),
                             postprocess = function(percentile, count) {
@@ -1036,14 +1042,16 @@ setMethod("quantile", "SolrPromise",
                                 colnames(percentile) <- paste0(probs, "%")
                                 percentile
                             })
-          })
+}
+
+median.SolrPromise <- function(x, na.rm=FALSE, ...) median(x, na.rm=na.rm)
 
 setMethod("median", "SolrPromise", function(x, na.rm=FALSE) {
               solrAggregate("percentile", x, na.rm, list(50))
           })
 
-setGeneric("weighted.mean", function(x, w, ...)
-    standardGeneric("weighted.mean"))
+weighted.mean.SolrPromise <- function(x, w, na.rm=FALSE, ...)
+    weighted.mean(x, w, na.rm=na.rm)
 
 setMethod("weighted.mean", c("SolrPromise", "SolrPromise"),
           function(x, w, na.rm=FALSE) {
@@ -1184,6 +1192,10 @@ setMethod("windows", "SolrPromise",
               ctx <- as(x, "Context")
               windows(ctx, start=start, end=end)$x
           })
+
+unique.SolrPromise <- function(x, incomparables = FALSE, ...) {
+    unique(x, incomparables=incomparables)
+}
 
 setMethod("unique", "SolrSymbolPromise", function (x, incomparables = FALSE) {
               unique(context(x)[expr(x)@name],
