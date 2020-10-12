@@ -1,9 +1,9 @@
-b7a1151da39b8ffd0e306a97431ca07c *DESCRIPTION
+279f85f64f4449c751d08e307a4be31c *DESCRIPTION
 beb95a149e3ad6989fe37c290812ef51 *NAMESPACE
 552cd6a01faeab0a204785fcaa55e26f *R/Context-class.R
 0533851ab9656d161539b1d815943516 *R/DocCollection-class.R
 19487c44018d872fd8d614e24f9da24c *R/Expression-class.R
-692aa33e28d8e136220263924f43b7c7 *R/Facets-class.R
+f5c443a47bc4c1fffa89b317698762ec *R/Facets-class.R
 b09f554914b4ca02ba552503eb507959 *R/FieldInfo-class.R
 e450f210e58dffd06b0f4d9573dc6be2 *R/FieldType-class.R
 504733946a0f7fc641ac60d333451e87 *R/GroupedSolrFrame-class.R
@@ -13,7 +13,7 @@ d3f6ad1b169b1efbbbe8d5c8728dd91c *R/SolrCore-class.R
 51d20893e8ca33a35d190480928bb217 *R/SolrExpression-class.R
 30221fe613afe1767ed8bf7555c578e1 *R/SolrFrame-class.R
 8d733e350d590e80f8c26d801979fc00 *R/SolrList-class.R
-bcc23973da8d396d4bc0bca786f19b8a *R/SolrPromise-class.R
+ecc75edbb6d4543e3024ecf57723cd16 *R/SolrPromise-class.R
 4617e9f40c9e06cdf0ef6c447bffe960 *R/SolrQuery-class.R
 ebe452273855c9436b7173a29df63c05 *R/SolrResult-class.R
 a0b30bcaeff3f4cd4167983ad62fbf8c *R/SolrSchema-class.R
@@ -23,10 +23,10 @@ ce224ec0c6f28906edc17c4ed497655e *R/SolrSummary-class.R
 f7124a2044604618f2b377e1ebca31a0 *R/utils.R
 62f9ac472be97d3d39a19a0e405c0b1c *R/zzz.R
 89d0ae837127c78c3833e2e3c9b5a981 *README.md
-15b3bb3c5064928ba4dd0c29c739863d *build/vignette.rds
+7490690f85ac4c2e1d2d9f83503bd82c *build/vignette.rds
 b57c942f2b9e6794744ac8f74f813ffb *inst/doc/intro.R
 0ae16553ce3732f2b9de10d6221c0c97 *inst/doc/intro.Rnw
-5449c0e64e015538ecb39bf464e8ffda *inst/doc/intro.pdf
+01c291223f73942a9c8bf61dccc38159 *inst/doc/intro.pdf
 30ef751373e91ef115d01e9ea2f667c4 *inst/notes/design.org
 b940fbed75bca76b752ee28ad1ca8bf1 *inst/solr/README.txt
 f13937ccc8e6c29af0f8e71f713d3f9e *inst/solr/cores/techproducts/conf/_rest_managed.json
@@ -149,7 +149,7 @@ d41d8cd98f00b204e9800998ecf8427e *inst/solr/cores/techproducts/data/index/write.
 5a0095aa4da37ddfbaaebd1b61c8b75d *inst/solr/solr.xml
 eb924df1d07b0769630c5c555b7ad83d *inst/solr/zoo.cfg
 32c52c7c53ace0711adea4f750e216b1 *inst/unitTests/test_SolrCore.R
-f2b7a45303b8e7b51ef7787d9137b964 *inst/unitTests/test_SolrFrame.R
+bf3fce1d3a5decf690397fc57c6ca03c *inst/unitTests/test_SolrFrame.R
 5c62edf9cf15e47adb8a9e369fc98f01 *inst/unitTests/test_SolrList.R
 eb654a386f57c598cfcf0cfd388b74b2 *inst/unitTests/test_SolrPromise.R
 047c087434e08c83f6446de87dba0f65 *inst/unitTests/test_SolrQuery.R
