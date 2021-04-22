@@ -103,8 +103,7 @@ getSolrPath <- function() {
 }
 
 getInstallPath <- function() {
-    path.expand(file.path(Sys.getenv("XDG_DATA_HOME", "~/.local/share"),
-                          "R", "rsolr"))
+    tools::R_user_dir("rsolr")
 }
 
 solrIsInstalled <- function() {
@@ -136,7 +135,7 @@ runSolr <- function() {
     writeLines(toHOCON(toJSON(config)), configPath)
     bin <- file.path(getSolrPath(), "bin", "solr-undertow")
     Sys.chmod(bin, "0755")
-    system(paste(bin, configPath),
+    system(paste(paste0('"', bin, '"'), paste0('"', configPath, '"')),
            wait=FALSE, ignore.stdout=!isTRUE(getOption("verbose")))
 }
 
