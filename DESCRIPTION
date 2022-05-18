@@ -1,7 +1,7 @@
 Package: rsolr
 Type: Package
 Title: R to Solr Interface
-Version: 0.0.11
+Version: 0.0.13
 Author: Michael Lawrence, Gabe Becker, Jan Vogel
 Maintainer: Michael Lawrence <michafla@gene.com>
 Description: A comprehensive R API for querying Apache Solr databases.
@@ -12,10 +12,11 @@ Description: A comprehensive R API for querying Apache Solr databases.
              lazily, i.e., a query is only sent to the database when
              the data are required. 
 License: Apache License (== 2.0)
+VignetteBuilder: knitr
 Imports: restfulr (>= 0.0.2), graph, S4Vectors (>= 0.14.3), rjson, XML,
         RCurl
 Depends: R (>= 3.4.0), BiocGenerics (>= 0.15.1), methods
-Suggests: nycflights13, RUnit, MASS
+Suggests: nycflights13, RUnit, MASS, knitr
 Collate: utils.R pminmax.R Context-class.R DocCollection-class.R
         Expression-class.R Facets-class.R FieldInfo-class.R
         FieldType-class.R Promise-class.R SolrExpression-class.R
@@ -24,6 +25,6 @@ Collate: utils.R pminmax.R Context-class.R DocCollection-class.R
         SolrList-class.R SolrFrame-class.R SolrPromise-class.R
         GroupedSolrFrame-class.R test.R zzz.R
 NeedsCompilation: no
-Packaged: 2021-04-20 23:16:21 UTC; michafla
+Packaged: 2022-05-17 23:32:52 UTC; michafla
 Repository: CRAN
-Date/Publication: 2021-04-22 04:50:09 UTC
+Date/Publication: 2022-05-18 07:10:02 UTC
